@@ -1,0 +1,43 @@
+{% extends 'app1/home.html' %}
+{% block content %}
+
+<style type="text/css">
+    .centerdv{
+    width:45%;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+
+    }
+
+</style>
+<h3 style="text-align:center">
+Orders
+</h3>
+<div class="container centerdv">
+{% for order in orders %}
+    <div class="well">
+<b>Name:</b>
+<br>
+{{order.first_name}}
+{{order.last_name}}
+<br>
+<b>
+Address</b>
+{{order.address}}
+{{order.city}}
+<br>
+<b>Payment Information:</b>
+{{order.payment_method}}
+{{order.payment_data}}
+<br>
+<b>Orders Items:</b>
+{{order.items}}
+<br>
+<b>
+Order Fulfilled?</b>
+{{order.fullfilled}}
+</div>
+{% endfor %}
+</div>
+{% endblock %}

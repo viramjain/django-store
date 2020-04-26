@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+<ul class="nav navbar-nav navbar-left">
+    <li><a class="navbar-brand" href="/" >Home</a>
+    <li><a href="/admin-login/"> Admin Login</a></li>
+
+    </li>
+</ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li > <a class="navbar-brand" href="/cart/">Cart:<b>({{cart_size}})Items</b>
+
+        </a></li>
+<li><a href="/cart/checkout/">Checkout</a></li>
+    </ul>
+</nav>
+<br>
+<br>
+<div class="page-header " style="text-align:center">
+    <h2>
+        StoreName
+    </h2>
+
+
+</div>{% block content %}
+<div class="row">
+{% for product in items %}
+    <div class="col-md-4 well" style="text-align:center">
+<b>
+    {{product.product_name}}
+</b><br><p>
+        {{product.product_description}}
+    </p>
+        <br>
+        <img src="/media/{{product.product_image}}" style="max-width:200px"><br>
+        <span class="label label-primary">{{product.product_price}}
+
+        </span><br>
+        <br>
+<form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Add to Cart!" class="btn btn-success">
+    <input type="hidden" name="obj_id" value="{{product.id}}">
+</form>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+	<!-- <h1>xndic</h1> -->
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+{% extends 'app1/home.html' %}
+{% block content %}
+<style type="text/css">
+    .centerdv{
+    width:45%;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+
+    }
+    .imagescale{
+    max-width:64px;
+    max-height:64px;
+</style>
+<div class="container centerdev ">
+    <h3>
+        Total Price:<br> <br> <span class="label label_success">
+    </span>{{total_price}}
+    </h3>
+<div class="well">
+    <form method="post" action="complete/" class="centerdv">
+        {% csrf_token %}
+        <h4>Billing Information</h4>
+        <b>First Name:</b>
+<input type="text" name="first_name" class="form-control"><br>
+        <b>
+            Last Name:
+        </b>
+        <input type="text" name="last_name" class="form-control"><br>
+        <b>Address:</b>
+        <input type="text" name="address" class="form-control">
+        <b>City</b>
+        <input type="text" name="city" class="form-control"><br>
+        <h4>Payment Information</h4>
+        <br>
+        <b>Payment Type</b><br>
+        <input type="radio" name="payment" value="paypal">
+        PayPal<br>
+        <input type="radio" name="payment" value="credit_card">CreditCard<br>
+        <b>Paypal Email/CC Number </b>
+        <input type="text" class="form-control" name="payment_data">
+        <input type="submit" value="Complete Order!" class="btn btn-success">
+    </form>
+</div>
+</div>
+{% endblock %}
